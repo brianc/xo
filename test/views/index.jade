@@ -1,0 +1,16 @@
+!!!html
+html
+  head
+  body
+    link(rel="stylesheet", href="/mocha.css")
+    script(src="/jquery.js")
+    script(src="/expect.js")
+    script(src="/mocha.js")
+    script(type="text/javascript")
+      mocha.setup('bdd')
+    script(src="/xo.js")
+    script(src="test/xo.js")
+    script(type="text/javascript")
+      $(function() { mocha.run(); });
+  body
+    #mocha

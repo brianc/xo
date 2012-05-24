@@ -1,0 +1,22 @@
+{
+  "author": "",
+  "name": "xo",
+  "version": "0.0.0",
+  "repository": {
+    "url": ""
+  },
+  "dependencies": {},
+  "devDependencies": {
+     "coffee-script": "*",
+     "mocha": "*",
+     "expect.js": "*",
+     "jade": "*",
+     "express": ">=3.0.x",
+     "filed": "*",
+     "jquery-browser": "*"
+   },
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
