@@ -1,3 +1,10 @@
+#node.js specific includes
+if module?.exports?
+  global.xo = require(__dirname + '/../xo.js')
+  expect = require("expect.js")
+else
+  expect = window.expect
+
 describe "xo", () ->
   describe "#emit", () ->
     describe "with no listeners", () ->
