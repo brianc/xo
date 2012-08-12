@@ -60,3 +60,16 @@ describe "xo.Agent", () ->
       xo.emit "message", "bye"
       expect(listener2.message).to.be "bye"
       expect(listener.message).to.be "bye"
+
+  describe "#destroy", () ->
+    it "removes listeners", () ->
+      agent = new xo.Agent
+        callCount: 0
+        on:
+          "boom": () ->
+            @callCount++
+      xo.emit "boom"
+      expect(agent.callCount).to.eql 1
+      agent.destroy()
+      xo.emit "boom"
+      expect(agent.callCount).to.eql 1
