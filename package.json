@@ -1,14 +1,13 @@
 {
   "author": "Brian M. Carlson",
   "name": "xo",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": {
     "url": "https://github.com/brianc/xo.git"
   },
   "scripts": {
     "compile": "node_modules/.bin/coffee -j xo.js -c src/index.coffee",
     "prepublish": "npm run-script compile",
-    "postpublish": "rm -r package",
     "pretest": "npm run-script compile",
     "test": "mocha",
     "prestart": "npm test",
