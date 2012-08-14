@@ -14,8 +14,7 @@ class xo.Agent
     this[key] = val for key, val of @config
     for name, handler of @on
       @__handlers or= {}
-      for name, handler of @on
-        xo.on name, this.__handlers[name] = handler.bind this
+      xo.on name, this.__handlers[name] = handler.bind this
 
   #destroy agent by removing event listeners
   destroy: () ->

@@ -8,6 +8,7 @@
   "scripts": {
     "compile": "node_modules/.bin/coffee -j xo.js -c src/index.coffee",
     "prepublish": "npm run-script compile",
+    "postpublish": "rm -r package",
     "pretest": "npm run-script compile",
     "test": "mocha",
     "prestart": "npm test",

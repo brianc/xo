@@ -68,6 +68,8 @@ describe "xo.Agent", () ->
         on:
           "boom": () ->
             @callCount++
+          "bang": () ->
+            @callCount++
       xo.emit "boom"
       expect(agent.callCount).to.eql 1
       agent.destroy()
