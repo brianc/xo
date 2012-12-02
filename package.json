@@ -6,7 +6,7 @@
     "url": "https://github.com/brianc/xo.git"
   },
   "scripts": {
-    "compile": "node_modules/.bin/coffee -j xo.js -c src/index.coffee",
+    "compile": "./node_modules/.bin/coffee -j xo.js -c src/index.coffee",
     "prepublish": "npm run-script compile",
     "pretest": "npm run-script compile",
     "test": "mocha",
@@ -22,8 +22,8 @@
      "jade": "*",
      "express": ">=3.0.x",
      "filed": "*",
-     "jquery-browser": "*",
-     "uglify-js": "*"
+     "uglify-js": "*",
+     "jquery": "*"
    },
   "engines": {
     "node": "*"

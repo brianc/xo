@@ -24,7 +24,6 @@ app.coffee = (url, path) ->
 
 app.static "/mocha.js", "mocha/mocha.js"
 app.static "/mocha.css", "mocha/mocha.css"
-app.static "/jquery.js", "jquery-browser"
 app.static "/expect.js", "expect.js/expect.js"
 app.coffee "/xo.js", "#{__dirname}/../../src/index.coffee"
 app.coffee "/test/xo.js", "#{__dirname}/../index.coffee"

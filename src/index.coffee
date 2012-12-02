@@ -1,20 +1,29 @@
 xo =
-  handlers: {}
+  _handlers: {}
+  handlers: (name) -> (xo._handlers[name] or= [])
   on: (name, handler) ->
-    not (xo.handlers[name] or= []).push(handler)
+    not xo.handlers(name).push(handler)
   emit: (name, args...) ->
-    (handler.apply(null, args) for handler in xo.handlers[name] or []).length > 0
-  removeListener: (name, listener) ->
-    for handler in xo.handlers[name]
-      delete xo.handlers[name] if listener is handler
+    (handler.apply(null, args) for handler in xo.handlers(name)).length > 0
+  removeListener: (name, handler) ->
+    #array.splice out the handler
+    (xo.handlers(name))[t..t] = [] if (t = xo.handlers(name).indexOf(handler)) > -1
 
+if module?.exports? #node
+  module.exports = xo
+  $ = require('jquery')
+else
+  #work around the script wrapper
+  window.xo = xo
+  $ = window.$
 
 class xo.Agent
-  constructor: (@config) ->
-    this[key] = val for key, val of @config
+  constructor: (config) ->
+    this[key] = val for key, val of config
+    @__handlers = {}
     for name, handler of @on
-      @__handlers or= {}
-      xo.on name, this.__handlers[name] = handler.bind this
+      @__handlers[name] = handler.bind this
+      xo.on name, @__handlers[name]
 
   #destroy agent by removing event listeners
   destroy: () ->
@@ -22,12 +31,24 @@ class xo.Agent
 
 
 class xo.View extends xo.Agent
-  constructor: (@config) ->
-    super @config
-    @el = $(@$) if @$
+  constructor: (config) ->
+    @children = []
+    super config
+    if typeof @$ is "string"
+      @el = $(@$)
+    else if typeof @$ is "function"
+      @el = $(@$.call(this))
     @el.bind name, handler.bind(this) for name, handler of @bind
 
-if module?.exports?
-  module.exports = xo
-else
-  window.xo = xo
+  append: (selector, child) ->
+    if child?
+      el = @el.find(selector)
+    else
+      el = @el
+      child = selector
+    @children.push child
+    el.append child.el
+
+  destroy: ->
+    child.destroy() for child in @children
+    super()
