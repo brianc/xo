@@ -28,6 +28,13 @@ describe "xo", () ->
     it "returns false", () ->
       expect(xo.on "whatever").to.be false
 
+  describe "#once", ->
+    it "fires once only", (done) ->
+      xo.once "asdfyo", done
+      xo.emit "asdfyo"
+      xo.emit "asdfyo"
+
+
 describe "xo.Agent", () ->
   describe "inline creation", () ->
     before () ->

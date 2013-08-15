@@ -8,6 +8,11 @@ xo =
   removeListener: (name, handler) ->
     #array.splice out the handler
     (xo.handlers(name))[t..t] = [] if (t = xo.handlers(name).indexOf(handler)) > -1
+  once: (name, handler) ->
+    h = (a, b, c, d, e) ->
+      xo.removeListener name, h
+      handler a, b, c, d, e
+    @on name, h
 
 if module?.exports? #node
   module.exports = xo
