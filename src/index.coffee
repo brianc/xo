@@ -3,6 +3,11 @@ xo =
   handlers: (name) -> (xo._handlers[name] or= [])
   on: (name, handler) ->
     not xo.handlers(name).push(handler)
+  once: (name, handler) ->
+    h = ->
+      xo.removeListener name, h
+      handler.apply(handler, arguments)
+    xo.on name, h
   emit: (name, args...) ->
     (handler.apply(null, args) for handler in xo.handlers(name)).length > 0
   removeListener: (name, handler) ->
