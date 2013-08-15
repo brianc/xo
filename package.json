@@ -1,7 +1,7 @@
 {
   "author": "Brian M. Carlson",
   "name": "xo",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "repository": {
     "url": "https://github.com/brianc/xo.git"
   },
@@ -16,15 +16,15 @@
   "main": "xo.js",
   "dependencies": {},
   "devDependencies": {
-     "coffee-script": "*",
-     "mocha": "*",
-     "expect.js": "*",
-     "jade": "*",
-     "express": ">=3.0.x",
-     "filed": "*",
-     "jquery-browser": "*",
-     "uglify-js": "*"
-   },
+    "coffee-script": "*",
+    "mocha": "*",
+    "expect.js": "*",
+    "jade": "*",
+    "express": ">=3.0.x",
+    "filed": "*",
+    "jquery-browser": "*",
+    "uglify-js": "*"
+  },
   "engines": {
     "node": "*"
   }
